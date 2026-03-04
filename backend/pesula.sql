@@ -43,10 +43,10 @@ CREATE TABLE tilaukset (
     tilaus_id SERIAL PRIMARY KEY,
     asiakas_id INTEGER REFERENCES asiakkaat(asiakas_id),
     pesupaivat INTEGER DEFAULT 2,
-    pesuprosentti INTEGER DEFAULT joku numero,
-    luotu TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+    pesuprosentti INTEGER DEFAULT 80,
+    luotu TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     vuokra_alku DATE NOT NULL,
-    vuokra_loppu DATE NOT NUll
+    vuokra_loppu DATE NOT NULL
 );
 
 CREATE TABLE tilausrivit (
