@@ -15,7 +15,7 @@ https://git-scm.com/install/windows
 - Muokatut tiedostot merkkautuu `M` ja uudet tiedostot merkataan `U`, nämä muutokset on vain sinun tietokoneellasi ja ne pitää erikseen lähettää githubiin. (Muista tallentaa tiedosto)
 
 ![](Picture-vscode-panel.png)
-- Sivupaneelin "Source Control" taas, ne pakoteidaan 'Commitiksi' 
+- Sivupaneelin "Source Control" taas, ne paketoidaan 'Commitiksi', siihen voi kirjoittaa kommenttina mitä muutoksia on tehnyt
 - Sen jälkeen ne pitää vielä "pushata" Githubiin. Eli painamalla "Sync Changes" nappia ne yritetään ladata Githubiin.
 ![](Picture-sync-changes.png)
 - Jos Github repo on kerennyt päivittyä ennen kuin se commit lähetetään tulee virhe, silloin voi tehdä "Pull (Rebase)", joka lataa githubista kaikki muutokset koneellesi, että tietokone on ajan tasalla **!!Ole varovainen tässä voi menettää kaikki omat muutokset jos joku on muokannut samaa tiedostoa.**
