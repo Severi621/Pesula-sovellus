@@ -7,3 +7,5 @@
 ![[Pasted image 20260313180907.png]]
 - Muokatut tiedostot merkkautuu `M` ja uudet tiedostot merkataan `U`, nämä muutokset on vain sinun tietokoneellasi ja ne pitää lähettää githubiin.
 - Sivupaneelin "Source Control" taas ne pakoteidaan 'Commitiksi' 
+- Sen jälkeen ne pitää vielä "pushata" Githubiin. Eli painamalla "Sync Changes" nappia ne ladataan Githubiin.
+%% Jatkuu %%
