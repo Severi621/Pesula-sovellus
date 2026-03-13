@@ -8,13 +8,13 @@ https://git-scm.com/install/windows
 ## Vscode
 - Sivupaneeli "Source Control" | `Ctrl + Shift + G`
 - Clone Repository -> Clone from Github
-![Kuva1](Picture-github-clone.png)
+![](Picture-github-clone.png)
 - *(Noudata vscoden ohjeita ja tunnistaudu, jos et ole sitä vielä tehnyt, vaatii tunnistautumiskoodin sovelluksesta ja sähköpostista.)*
 - Valitse Severi623/Pesula-sovellus -> Tietokoneen kansio mihin sovellus kopioidaan
-![Kuva2](Picture-vscode-panel.png)
 - Nyt sivupaneelissa "Explorer" pitäisi näkyä kaikki mitä Githubissa on. 
 - Muokatut tiedostot merkkautuu `M` ja uudet tiedostot merkataan `U`, nämä muutokset on vain sinun tietokoneellasi ja ne pitää erikseen lähettää githubiin. (Muista tallentaa tiedosto)
-![Kuva3](Picture-vscode-panel.png)
+
+![](Picture-vscode-panel.png)
 - Sivupaneelin "Source Control" taas, ne pakoteidaan 'Commitiksi' 
 - Sen jälkeen ne pitää vielä "pushata" Githubiin. Eli painamalla "Sync Changes" nappia ne yritetään ladata Githubiin.
 ![](Picture-sync-changes.png)
