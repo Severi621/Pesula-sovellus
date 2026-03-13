@@ -19,5 +19,5 @@ Muokkaa varastoa:
 
 
 Tietokannan voi luoda myös näin:
-sqlite3 database.db
-.read init_database.sql
+1. sqlite3 database.db
+2. .read init_database.sql
