@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SimpleCalendarJS Demo</title>
+
+  <!-- 1. Include the CSS (important – without this the calendar looks broken) -->
+  <link 
+    rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/simple-calendar-js@latest/dist/simple-calendar-js.min.css"
+  />
+
+  <style>
+    /* Optional: make the calendar container nice */
+    #calendar {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- YKSINKERTAINEN TESTINAPPI -->
+  <div style="margin: 20px;">
+    <button onclick="addTest()">LISÄÄ TESTIVARAUS</button>
+    <span id="status"></span>
+  </div>
+
+  <!-- 2. Empty container where the calendar will be rendered -->
+  <div id="calendar"></div>
+
+  <!-- 3. Include the JS library -->
+  <script src="https://cdn.jsdelivr.net/npm/simple-calendar-js@latest/dist/simple-calendar-js.min.js"></script>
+
+  <!-- 4. Your initialization code -->
+  <script>
+    // Wait until DOM is ready (good practice)
+    document.addEventListener('DOMContentLoaded', () => {
+      const calendar = new SimpleCalendarJs('#calendar', {
+        defaultView: 'month',           // can be 'month', 'week', 'day', 'agenda'
+        locale: 'en-US',
+
+        // Fake / real backend endpoint – returns array of events
+        fetchEvents: async (startDate, endDate) => {
+          // Example: you can use startDate & endDate to filter
+          // console.log('Fetching events from', startDate, 'to', endDate);
+
+          try {
+            const res = await fetch('/api/events');   // ← your real API
+            if (!res.ok) throw new Error('Network response was not ok');
+            const events = await res.json();
+
+            // Expected format (array of objects):
+            // [
+            //   { id: 1, title: "Meeting", start: "2026-02-25T10:00:00", end: "2026-02-25T11:00:00", color: "#3788d8" },
+            //   { id: 2, title: "Birthday", start: "2026-02-28", allDay: true }
+            // ]
+            return events;
+          } catch (err) {
+            console.error('Failed to load events:', err);
+            return []; // return empty → no crash
+          }
+        },
+
+        // Click handler for events
+        onEventClick: (event) => {
+          console.log('Event clicked:', event);
+          alert(`You clicked: ${event.title}\nStart: ${event.start}`);
+          // You can open modal, redirect, etc. here
+        },
+
+        // Optional useful settings
+        editable: true,               // allow drag & drop + resize (if supported in your version)
+        selectable: true,             // allow selecting time ranges
+        headerToolbar: {              // customize buttons
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,week,day'
+        }
+      });
+
+      // Optional: calendar is now ready – you can call methods
+      // calendar.next();   // go to next month
+      // calendar.gotoDate('2026-12-01');
+    });
+
+    // YKSINKERTAINEN FUNKTIO TESTIVARAUKSEN LISÄÄMISEEN
+    async function addTest() {
+      try {
+       const res = await fetch('/api/add-test', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            asiakas_id: 1,
+            vuokra_alku: new Date().toISOString().split('T')[0],
+           vuokra_loppu: new Date(Date.now() + 86400000).toISOString().split('T')[0]
+         })
+        });
+    
+        const data = await res.json();
+    
+       if (res.ok && data.success) {
+         alert('Lisäys onnistui! Tilaus ID: ' + data.tilaus_id);
+        // Päivitä sivu niin kalenteri näyttää uuden varauksen
+        window.location.reload();
+       } else {
+         alert('Virhe lisäyksessä');
+       }
+     } catch (err) {
+       alert('Virhe: ' + err.message);
+     }
+    }
+  </script>
+
+</body>
+</html>
