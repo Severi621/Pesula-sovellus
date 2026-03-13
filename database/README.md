@@ -16,3 +16,8 @@ Muokkaa varastoa:
 1. Kopioi test_varasto.sql:n koodi SQLiteen samoin kun tietokannan luonnissa.
 2. Execute all.
 3. Tietokannan varaston sisätöä on muutettu.
+
+
+Tietokannan voi luoda myös näin:
+sqlite3 database.db
+.read init_database.sql
