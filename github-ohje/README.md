@@ -21,11 +21,32 @@ https://git-scm.com/install/windows
 - Jos Github repo on kerennyt päivittyä ennen kuin se commit lähetetään tulee virhe, silloin voi tehdä "Pull (Rebase)", joka lataa githubista kaikki muutokset koneellesi, että tietokone on ajan tasalla **!!Ole varovainen tässä voi menettää kaikki omat muutokset jos joku on muokannut samaa tiedostoa.**
 ![](Picture-pull-rebase.png)
 
-### Branchit ja merge
-Konfliktiesimerkki
+### Branchit
+- Branchit on turvallisempi tapa tuoda uusia muutoksia git projektiin.
+![](Picture-branch-graph.png)
+- Ideana siis luoda oma haarauma ominaisuudelle (Frontend, varastonäkymä, etc.) ja kun se on valmis, liittää haarauma pääpolulle mergen avulla.
+	- Välttää ristiriitoja repon ja kehitysympäristön välillä
+	- Ei tarvitse koko ajan ladata muutoksia githubista (toki hyvä tehdä niin)
+- Branchitkin voi jakautua useampaan branchiin.
+- Vasemmassa alanurkassa näkyy branch jota muokkaa tällä hetkellä
+![](Picture-github-branch.png)
+- Sitä klikkaamalla voi vaihtaa tai luoda uuden branchin.
+	- Branches = omalla koneella olevat haaraumat
+	- Remote branches = githubissa olevat haaraumat.
+![](Picture-create-branch.png)
+- Nyt voi luoda commiteja ja työntää niitä githubiin niin kuin aiemmin, mutta ne menevät valitulle haaraumalle pääpolun sijaan.
+
+### Merge
+- Kun ominaisuus on valmis, haarauma liitetään pääpolulle ja se poistetaan.
+- Vaihda takaisin pääpolulle (polulle mihin haluaa liittää)
+- 
 # Termejä
-| Termi  | Toiminto                             |
-| ------ | ------------------------------------ |
-| Pull   | Lataa Githubista                     |
-| Push   | Työntää Githubiin                    |
-| Commit | "Paketti" jossa on muutoksia koodiin |
+| Termi    | Toiminto                                      |
+| -------- | --------------------------------------------- |
+| Git      | Projektinhallintatyökalu                      |
+| Github   | Pilvipalvelu, joka toimii gitin avulla.       |
+| Pull     | Lataa Githubista                              |
+| Push     | Työntää Githubiin                             |
+| Commit   | "Paketti" jossa on muutoksia koodiin          |
+| Checkout | Branchin vaihto                               |
+| Branch   | Koodihaarauma jollekin uudelle ominaisuudelle |
