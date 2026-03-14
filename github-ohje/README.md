@@ -22,7 +22,7 @@ https://git-scm.com/install/windows
 ![](Picture-pull-rebase.png)
 
 ### Branchit ja merge
-TODO
+Konfliktiesimerkki
 # Termejä
 | Termi  | Toiminto                             |
 | ------ | ------------------------------------ |
