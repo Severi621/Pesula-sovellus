@@ -2,8 +2,24 @@
 https://git-scm.com/install/windows
 
 # Käyttö:
+```
+Pikamuistio:
+1. Ctrl+Shift+G → Source Control -paneeli 
+2. Sync Changes (↑↓ pilvi) // Pull + Push kerralla (tai ... → Pull ensin)
+3. Tee muutokset → ne näkyvät Changes-listassa 
+4. + merkki → stage (tai + kaikki) 
+5. Kirjoita commit-viesti → ✔ Commit (tai Ctrl+Enter) 
+6. Sync Changes → pushaa
 
-## Konsoli
+Vinkit:
+- Katso Changes-osio 
+- Vaihda haara: vasen alakulma → klikkaa branch-nimeä 
+- Uusi haara: ... → Branch → Create Branch... 
+- Stash (jos pull ei onnistu): ... → Stash Changes → Pop myöhemmin
+
+Suositus: 
+- Älä puske suoraan mainiin → feature/xxx-haara + Pull Request GitHubissa
+```
 
 ## Vscode
 - Sivupaneeli "Source Control" | `Ctrl + Shift + G`
