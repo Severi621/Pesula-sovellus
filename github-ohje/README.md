@@ -55,7 +55,9 @@ Suositus:
 ### Merge
 - Kun ominaisuus on valmis, haarauma liitetään pääpolulle ja se poistetaan.
 - Vaihda takaisin pääpolulle (polulle mihin haluaa liittää)
-- 
+- Valikko (kolme pistettä) -> Branch -> Merge -> Branch joka liitetään
+	- (Liittää nykyiselle branchille valitun branching muutokset ja uudet tiedostot)
+
 # Termejä
 | Termi    | Toiminto                                      |
 | -------- | --------------------------------------------- |
