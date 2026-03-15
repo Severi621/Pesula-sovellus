@@ -16,7 +16,8 @@ Vinkit:
 
 Suositus: 
 ```
-testi
+Githubista
+
 ## Vscode
 - Sivupaneeli "Source Control" | `Ctrl + Shift + G`
 - Clone Repository -> Clone from Github
