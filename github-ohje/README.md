@@ -15,7 +15,6 @@ Vinkit:
 - Stash (jos pull ei onnistu): ... → Stash Changes → Pop myöhemmin
 
 Suositus: 
-- Älä puske suoraan mainiin → feature/xxx-haara + Pull Request GitHubissa
 ```
 
 ## Vscode
