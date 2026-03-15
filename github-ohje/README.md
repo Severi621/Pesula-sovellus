@@ -17,6 +17,7 @@ Vinkit:
 Suositus: 
 ```
 Githubista
+Tutoriaali esimerkki.
 
 ## Vscode
 - Sivupaneeli "Source Control" | `Ctrl + Shift + G`
