@@ -1,6 +1,3 @@
-# Asennus
-https://git-scm.com/install/windows
-
 # Käyttö:
 ```
 Pikamuistio:
