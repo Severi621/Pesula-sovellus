@@ -1,6 +1,8 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+// Uusi import
+const fs = require('fs');
 
 const app = express();
 const port = 3000;
@@ -11,11 +13,37 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 // Middleware JSON
 app.use(express.json());
 
-// Yhdistä tietokantaan
-const db = new sqlite3.Database(path.join(__dirname, '../database/database.db'), (err) => {
-  if (err) console.error(err);
-  else console.log('Connected to SQLite database.');
+// Yhdistä tietokantaan (UUSITTU)
+const dbPath = path.join(__dirname, '../database/database.db');
+const sqlPath = path.join(__dirname, '../database/init_database.sql');
+
+// Tarkista onko tietokanta jo olemassa
+const dbExists = fs.existsSync(dbPath);
+
+// Yhdistä (tai luo uusi)
+const db = new sqlite3.Database(dbPath, (err) => {
+  if (err) {
+    console.error("Tietokantavirhe:", err.message);
+  } else {
+    console.log("Connected to SQLite database.");
+
+    // Jos tietokantaa ei ollut → luodaan taulut
+    if (!dbExists) {
+      console.log("Luodaan uusi tietokanta...");
+
+      const initSql = fs.readFileSync(sqlPath, 'utf-8');
+
+      db.exec(initSql, (err) => {
+        if (err) {
+          console.error("SQL init virhe:", err.message);
+        } else {
+          console.log("Tietokanta alustettu onnistuneesti.");
+        }
+      });
+    }
+  }
 });
+// (UUTUUS LOPPUU)
 
 // Palauta kaikki tapahtumat (testidataa varten)
 app.get('/api/events', (req, res) => {
