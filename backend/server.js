@@ -90,6 +90,27 @@ app.get("/", (req, res) => {
     res.send("Backend toimii!")
 })
 
+app.get('/api/asiakkaat', (req, res) => {
+  db.all('SELECT asiakas_id, nimi, puhelin, osoite FROM asiakkaat ORDER BY nimi', [], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
+app.get('/api/liinakategoriat', (req, res) => {
+  db.all('SELECT kategoria_id, nimi FROM liinakategoriat ORDER BY nimi', [], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
+app.get('/api/liinakoot', (req, res) => {
+  db.all('SELECT koko_id, koko_nimi FROM liinakoot ORDER BY koko_nimi', [], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
 app.listen(port, () => {
     console.log(`Server käynnissä portissa ${port}`);
 });
