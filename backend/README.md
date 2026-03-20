@@ -31,3 +31,9 @@ node server.js
 Palvelin kuuntelee porttia 3000:
     Avaa selaimessa http://localhost:3000/ → testi-endpoint
     Staattiset frontend-tiedostot löytyvät /frontend-kansiosta
+
+
+## 4. Frontendin käynnistäminen
+
+Kirjoita selaimeesi "http://localhost:3000/test(1).html".
+Oletettavasti "test(1).html" pitää vaihtaa jos käytät eri versiota frontendistä.
