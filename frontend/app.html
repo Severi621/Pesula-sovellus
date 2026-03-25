@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varauskalenteri</title>
+    <!--Simple-calendar-js css tiedosto.-->
+    <link rel="stylesheet" href="node_modules/simple-calendar-js/dist/simple-calendar-js.min.css"/>
+    <link rel="stylesheet" href="frontend/app.css">
+</head>
+<body>
+    <div class="ylälaatikko">
+        <!--simple-calendar-js-->
+
+        <div id="tilaukset" class="tilaukset">
+            <h1>Tilaukset</h1>
+            <h3 id="tilaus-otsikko"></h3>
+            <p>Vuokran aloituspvm: <span id="tilaus-alkupvm"></span></p>
+            <p>Vuokran lopetuspvm: <span id="tilaus-loppupvm"></span></p>
+            <p>Asiakkaan nimi: <span id="tilaus-asiakas"></span></p>
+            <p id="tilaus-tiedot"></p>
+            <button class="nappi" id="lisääTilausNappi">Lisää Tilaus</button>
+            <button class="nappi" id="poistaTilausNappi">Poista</button>
+        </div>
+
+        <div id="kalenteri">
+            <h1>Kalenteri</h1>
+        </div>
+
+        <div class="varasto">
+            <h1>Varasto</h1>
+            <button class="nappi" id="addCategoryBtn">Lisää Liinakategoria</button>
+            <button class="nappi" id="addSizeBtn">Lisää Liinakoko</button>
+            <table class="tuoteluettelo">
+                <thead>
+                    <tr>
+                        <th>TUOTE</th>
+                        <th>KATEGORIA</th>
+                        <th>MÄÄRÄ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Esimerkki</td>
+                        <td>Esimerkkikategoria</td>
+                        <td>200</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="asiakkaat">
+        <h1>Asiakkaat</h1>
+        <button class="nappi" id="addCustomerBtn">Lisää Asiakas</button>
+    </div>
+
+
+    <!-- Popup ikkunat, dialog natiivi html popup, ei tarvitse taistella näkyvyydestä-->
+     <dialog id="lisääTilausModaali">
+        <h2>Lisää uusi tilaus:</h2>
+        <form id="tilausFormi" method="dialog">
+            <div class="formiryhmä">
+                <label for="asiakas">Asiakas*</label>
+                <input type="text" id="asiakas" name="asiakas" required placeholder="esim. Matti Meikäläinen">
+            </div>
+            <div class="formiryhmä">
+                <label for="aloituspäivä">Alkupvm*</label>
+                <input type="date" id="aloituspäivä" name="aloituspäivä" required>
+            </div>
+            <div class="formiryhmä">
+                <label for="lopetuspäivä">Lopetuspvm*</label>
+                <input type="date" id="lopetuspäivä" name="lopetuspäivä" required>
+            </div>
+
+            <div class="modaaliNapit">
+                <button type="button" class="peruutaNappi" onclick="document.getElementById('lisääTilausModaali').close()">
+                    Peruuta
+                </button>
+                <button type="submit" class="lisääNappi" value="lisää">
+                    Lisää
+                </button>
+            </div>
+        </form>
+     </dialog>
+
+    <script type="module" src="node_modules/simple-calendar-js/dist/simple-calendar-js.min.js"></script>
+    <script type="module" src="frontend/app.js"></script>    
+</body>
+</html>
