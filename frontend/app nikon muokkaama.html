@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Varauskalenteri</title>
+
+  <!-- Simple Calendar CSS -->
+  <link rel="stylesheet" href="/node_modules/simple-calendar-js/dist/simple-calendar-js.min.css">
+
+  <!-- Oma CSS -->
+  <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+
+<div class="ylälaatikko">
+
+  <!-- TILAUKSET -->
+  <div id="tilaukset" class="tilaukset">
+    <h1>Tilaukset</h1>
+    <h3 id="tilaus-otsikko"></h3>
+
+    <p>Vuokran aloituspvm: <span id="tilaus-alkupvm"></span></p>
+    <p>Vuokran lopetuspvm: <span id="tilaus-loppupvm"></span></p>
+    <p>Asiakkaan nimi: <span id="tilaus-asiakas"></span></p>
+
+    <button class="nappi" id="lisääTilausNappi">Lisää Tilaus</button>
+    <button class="nappi" id="poistaTilausNappi">Poista</button>
+  </div>
+
+  <!-- KALENTERI -->
+  <div>
+    <h1>Kalenteri</h1>
+    <div id="kalenteri"></div>
+  </div>
+
+  <!-- VARASTO -->
+  <div class="varasto">
+    <h1>Varasto</h1>
+    <button class="nappi" id="addCategoryBtn">Lisää Liinakategoria</button>
+    <button class="nappi" id="addSizeBtn">Lisää Liinakoko</button>
+
+    <table class="tuoteluettelo">
+      <thead>
+        <tr>
+          <th>TUOTE</th>
+          <th>KATEGORIA</th>
+          <th>MÄÄRÄ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Esimerkki</td>
+          <td>Esimerkkikategoria</td>
+          <td>200</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ASIAKKAAT -->
+<div class="asiakkaat">
+  <h1>Asiakkaat</h1>
+  <button class="nappi" id="addCustomerBtn">Lisää Asiakas</button>
+</div>
+
+<!-- POPUP: LISÄÄ TILAUS -->
+<dialog id="lisääTilausModaali">
+  <h2>Lisää uusi tilaus:</h2>
+
+  <form id="tilausFormi" method="dialog">
+    <div class="formiryhmä">
+      <label for="asiakas">Asiakas*</label>
+      <input type="text" id="asiakas" required>
+    </div>
+
+    <div class="formiryhmä">
+      <label for="aloituspäivä">Alkupvm*</label>
+      <input type="date" id="aloituspäivä" required>
+    </div>
+
+    <div class="formiryhmä">
+      <label for="lopetuspäivä">Loppupvm*</label>
+      <input type="date" id="lopetuspäivä" required>
+    </div>
+
+    <div class="modaaliNapit">
+      <button type="button" onclick="document.getElementById('lisääTilausModaali').close()">Peruuta</button>
+      <button type="submit" class="lisääNappi">Lisää</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- POPUP: MUOKKAA TILAUSTA -->
+<dialog id="muokkaaTilausModaali">
+  <h2>Muokkaa varausta</h2>
+
+  <form id="muokkausFormi" method="dialog">
+    <div class="formiryhmä">
+      <label for="muokkaaAsiakas">Asiakas</label>
+      <input type="text" id="muokkaaAsiakas" required>
+    </div>
+
+    <div class="formiryhmä">
+      <label for="muokkaaAlku">Alkupvm</label>
+      <input type="date" id="muokkaaAlku" required>
+    </div>
+
+    <div class="formiryhmä">
+      <label for="muokkaaLoppu">Loppupvm</label>
+      <input type="date" id="muokkaaLoppu" required>
+    </div>
+
+    <div class="modaaliNapit">
+      <button type="button" onclick="document.getElementById('muokkaaTilausModaali').close()">Sulje</button>
+      <button type="submit" class="lisääNappi">Tallenna</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- POPUP: POISTA TILAUS -->
+<dialog id="poistaTilausModaali">
+  <h2>Poista varaus</h2>
+  <p>Haluatko varmasti poistaa tämän varauksen?</p>
+
+  <div class="modaaliNapit">
+    <button type="button" onclick="document.getElementById('poistaTilausModaali').close()">Peruuta</button>
+    <button id="vahvistaPoisto" style="background:red;color:white;">Poista</button>
+  </div>
+</dialog>
+
+<!-- POPUP: LISÄÄ LIINAKATEGORIA -->
+<dialog id="categoryModal">
+  <h2>Lisää liinakategoria</h2>
+
+  <form id="categoryForm" method="dialog">
+    <div class="formiryhmä">
+      <label for="catName">Kategorian nimi*</label>
+      <input type="text" id="catName" required>
+    </div>
+
+    <div class="modaaliNapit">
+      <button type="button" onclick="document.getElementById('categoryModal').close()">Peruuta</button>
+      <button type="submit" class="lisääNappi">Lisää</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- POPUP: LISÄÄ LIINAKOKO -->
+<dialog id="sizeModal">
+  <h2>Lisää liinakoko</h2>
+
+  <form id="sizeForm" method="dialog">
+    <div class="formiryhmä">
+      <label for="sizeName">Koko*</label>
+      <input type="text" id="sizeName" required>
+    </div>
+
+    <div class="modaaliNapit">
+      <button type="button" onclick="document.getElementById('sizeModal').close()">Peruuta</button>
+      <button type="submit" class="lisääNappi">Lisää</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Simple Calendar JS -->
+<script type="module" src="/node_modules/simple-calendar-js/dist/simple-calendar-js.min.js"></script>
+
+<!-- Oma JS -->
+<script type="module" src="app.js"></script>
+
+</body>
+</html>
+
+
