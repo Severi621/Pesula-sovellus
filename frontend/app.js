@@ -31,14 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (err) {
         console.error(err);
       }
-
-      // VANHA POISTOTOIMINTO
-      /*  
-      if (confirm("Poistetaanko varaus?")) {
-        fetch("/api/delete-event/" + event.id, { method: "DELETE" })
-          .then(() => location.reload());
-      }
-          */
     },
 
     onSlotClick: (date) => { 
@@ -70,70 +62,6 @@ function renderEventDetails(event) {
   }, null, 2);
   div.dataset.tilaus_id = event.tilaus_id;
 }
-
-/* TESTIVARAUS (nyt turha?)
-async function addTest() {
-  const res = await fetch('/api/add-test', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      asiakas_id: 1,
-      vuokra_alku: new Date().toISOString().split('T')[0],
-      vuokra_loppu: new Date(Date.now() + 86400000).toISOString().split('T')[0]
-    })
-  });
-
-  const data = await res.json();
-  if (data.success) location.reload();
-}
-*/
-
-/* LISÄÄ ASIAKAS
-addCustomerBtn.onclick = () => customerModal.style.display = "flex";
-function closeCustomerModal() { customerModal.style.display = "none"; }
-
-saveCustomer.onclick = async () => {
-  await fetch("/api/asiakkaat", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({
-      nimi: custName.value,
-      puhelin: custPhone.value,
-      osoite: custAddress.value
-    })
-  });
-  closeCustomerModal();
-  alert("Asiakas lisätty!");
-};
-
-// LISÄÄ KATEGORIA
-addCategoryBtn.onclick = () => categoryModal.style.display = "flex";
-function closeCategoryModal() { categoryModal.style.display = "none"; }
-
-saveCategory.onclick = async () => {
-  await fetch("/api/liinakategoriat", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({ nimi: catName.value })
-  });
-  closeCategoryModal();
-  alert("Kategoria lisätty!");
-};
-
-// LISÄÄ KOKO
-addSizeBtn.onclick = () => sizeModal.style.display = "flex";
-function closeSizeModal() { sizeModal.style.display = "none"; }
-
-saveSize.onclick = async () => {
-  await fetch("/api/liinakoot", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({ koko_nimi: sizeName.value })
-  });
-  closeSizeModal();
-  alert("Koko lisätty!");
-};
-*/
 
 // LISÄÄ TILAUS POPUP
 const lisääTilausNappi = document.getElementById("lisääTilausNappi");
@@ -196,4 +124,64 @@ poistaTilausNappi.addEventListener('click', () => {
       .then(() => location.reload());
   }
 
+});
+
+// -----------------------------
+// VARASTON NAPIT
+// -----------------------------
+
+document.getElementById("addCategoryBtn").addEventListener("click", () => {
+  alert("Lisää Liinakategoria painettu!");
+});
+
+document.getElementById("addSizeBtn").addEventListener("click", () => {
+  alert("Lisää Liinakoko painettu!");
+});
+
+document.getElementById("addCustomerBtn").addEventListener("click", () => {
+  alert("Lisää Asiakas painettu!");
+});
+// -----------------------------
+// VARASTON POPUPIT
+// -----------------------------
+
+const categoryModal = document.getElementById("categoryModal");
+const categoryForm = document.getElementById("categoryForm");
+
+document.getElementById("addCategoryBtn").addEventListener("click", () => {
+  categoryForm.reset();
+  categoryModal.showModal();
+});
+
+categoryForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const nimi = document.getElementById("catName").value;
+
+  // Tähän tulee API-kutsu myöhemmin
+  console.log("Lisätään kategoria:", nimi);
+
+  categoryModal.close();
+});
+// -----------------------------
+// LIINAKOKO POPUP
+// -----------------------------
+
+const sizeModal = document.getElementById("sizeModal");
+const sizeForm = document.getElementById("sizeForm");
+
+document.getElementById("addSizeBtn").addEventListener("click", () => {
+  sizeForm.reset();
+  sizeModal.showModal();
+});
+
+sizeForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const koko = document.getElementById("sizeName").value;
+
+  // API-kutsu lisätään myöhemmin
+  console.log("Lisätään liinakoko:", koko);
+
+  sizeModal.close();
 });
